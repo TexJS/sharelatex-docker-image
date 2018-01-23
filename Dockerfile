@@ -1,6 +1,6 @@
 # Sharelatex Community Edition (sharelatex/sharelatex)
 
-FROM sharelatex/sharelatex-base:latest
+FROM texjs/sharelatex-base:latest
 
 ENV baseDir .
 
@@ -19,7 +19,7 @@ ADD ${baseDir}/logrotate/sharelatex /etc/logrotate.d/sharelatex
 COPY ${baseDir}/init_scripts/  /etc/my_init.d/
 
 # Install ShareLaTeX
-RUN git clone https://github.com/sharelatex/sharelatex.git /var/www/sharelatex
+RUN git clone https://github.com/texjs/sharelatex.git /var/www/sharelatex
 
 ADD ${baseDir}/services.js /var/www/sharelatex/config/services.js
 ADD ${baseDir}/package.json /var/www/package.json
@@ -38,7 +38,7 @@ RUN cd /var/www/sharelatex; \
 	grunt compile;
 
 RUN cd /var/www && node git-revision > revisions.txt
-	
+
 # Minify js assets
 RUN cd /var/www/sharelatex/web; \
 	grunt compile:minify;

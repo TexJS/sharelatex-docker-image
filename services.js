@@ -1,8 +1,8 @@
-module.exports = 
+module.exports =
 
 [{
 	name: "web",
-	repo: "https://github.com/sharelatex/web-sharelatex.git",
+	repo: "https://github.com/texjs/web-sharelatex.git",
 	version: "master"
 }, {
 	name: "real-time",
