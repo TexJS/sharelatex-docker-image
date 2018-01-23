@@ -1,6 +1,6 @@
 # Sharelatex Community Edition (sharelatex/sharelatex)
 
-FROM texjs/sharelatex-base:latest
+FROM sharelatex/sharelatex-base:latest
 
 ENV baseDir .
 
