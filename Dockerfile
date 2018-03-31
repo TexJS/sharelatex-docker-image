@@ -45,7 +45,7 @@ RUN cd /var/www/sharelatex/web; \
 
 RUN cd /var/www/sharelatex/clsi; \
 	grunt compile:bin; \
-	chown -R www-data:www-data /var/www/sharelatex;
+	chown -R http:http /var/www/sharelatex;
 
 EXPOSE 80
 
