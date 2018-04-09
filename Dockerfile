@@ -1,6 +1,6 @@
 # Sharelatex Community Edition (sharelatex/sharelatex)
 
-FROM sharelatex/sharelatex-base:latest
+FROM texjs/sharelatex-base:latest
 
 ENV baseDir .
 
@@ -37,15 +37,12 @@ RUN cd /var/www/sharelatex; \
 	git clone https://bitbucket.org/sharelatex/launchpad-webmodule.git launchpad; \
 	grunt compile;
 
-RUN cd /var/www && node git-revision > revisions.txt
-
 # Minify js assets
 RUN cd /var/www/sharelatex/web; \
 	grunt compile:minify;
 
 RUN cd /var/www/sharelatex/clsi; \
-	grunt compile:bin; \
-	chown -R http:http /var/www/sharelatex;
+	grunt compile:bin;
 
 EXPOSE 80
 
