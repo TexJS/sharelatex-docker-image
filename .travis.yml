@@ -9,10 +9,7 @@ services:
   - mongodb
 
 script:
-  #- docker run -d -v ~/sharelatex_data:/var/lib/sharelatex -p 5000:80 --name=sharelatex sharelatex/sharelatex-ldap
-  - docker build -t texjs/sharelatex .
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push texjs/sharelatex
+  make && make build-community
 
 after_success:
   - wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
