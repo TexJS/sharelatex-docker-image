@@ -26,20 +26,26 @@ ADD ${baseDir}/package.json /var/www/package.json
 ADD ${baseDir}/git-revision.js /var/www/git-revision.js
 RUN cd /var/www && npm install
 
+RUN chown -R www-data:www-data /var/www/sharelatex/
+
 RUN cd /var/www/sharelatex; \
 	npm install; \
 	grunt install; \
+	chown -R www-data:www-data /var/www/sharelatex/; \
 	bash -c 'source ./bin/install-services'; \
 	cd web; \
 	npm install; \
 	npm install bcrypt; \
 	cd modules; \
 	git clone https://bitbucket.org/sharelatex/launchpad-webmodule.git launchpad; \
-	grunt compile;
+	grunt compile; \
+	chown -R www-data:www-data /var/www/sharelatex/web/;
 
 # Minify js assets
 RUN cd /var/www/sharelatex/web; \
-	grunt compile:minify;
+	grunt compile:minify; \
+	cd public; \
+	chmod a+w -R minjs/;
 
 RUN cd /var/www/sharelatex/clsi; \
 	grunt compile:bin;
